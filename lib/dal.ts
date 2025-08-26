@@ -7,23 +7,22 @@ import { mockDelay } from "./utils"
 import { unstable_cacheTag as cacheTag } from "next/cache"
 
 //Get current user
-export const getCurrentUser = async () => {
+export const getCurrentUser = cache(async () => {
   const session = await getSession()
-  if (!session) {
-    return null
-  }
+  if (!session) return null
+
+  await mockDelay(700)
   try {
-    const results = await db
+    const result = await db
       .select()
       .from(users)
-      .where(eq(users.email, session.userId))
-
-    return results[0] || null
+      .where(eq(users.id, session.userId))
+    return result[0] || null
   } catch (e) {
-    console.error(e)
+    console.error("Error getting user by ID:", e)
     return null
   }
-}
+})
 
 // Get user by email
 export const getUserByEmail = async (email: string) => {
@@ -35,5 +34,19 @@ export const getUserByEmail = async (email: string) => {
   } catch (e) {
     console.error(e)
     return null
+  }
+}
+export async function getIssues() {
+  try {
+    const result = await db.query.issues.findMany({
+      with: {
+        user: true,
+      },
+      orderBy: (issues, { desc }) => [desc(issues.createdAt)],
+    })
+    return result
+  } catch (error) {
+    console.error("Error fetching issues:", error)
+    throw new Error("Failed to fetch issues")
   }
 }
