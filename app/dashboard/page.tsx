@@ -25,7 +25,7 @@ export default async function DashboardPage() {
       </div>
 
       {issues.length > 0 ? (
-        <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-dark-border-default bg-white dark:bg-dark-high shadow-sm">
+        <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-dark-border-default bg-dark dark:bg-dark-high shadow-sm">
           {/* Header row */}
           <div className="grid grid-cols-12 gap-4 px-6 py-3 text-sm font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-dark-elevated border-b border-gray-200 dark:border-dark-border-default">
             <div className="col-span-5">Title</div>
