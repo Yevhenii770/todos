@@ -1,19 +1,9 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { formatDistanceToNow } from "date-fns"
 
 // Utility function for combining Tailwind classes
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
-}
-
-// Format date to relative time (e.g., "2 days ago")
-export function formatRelativeTime(date: Date | null | undefined) {
-  if (!date || isNaN(date.getTime())) {
-    return "Invalid date"
-  }
-
-  return formatDistanceToNow(date, { addSuffix: true })
 }
 
 // Simple validation check for email
