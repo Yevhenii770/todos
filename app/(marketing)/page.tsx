@@ -15,8 +15,8 @@ export default async function LandingPage() {
               </span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-300">
-              A minimal and elegant issue tracking tool for modern teams. Manage
-              your projects with ease.
+              A minimal and elegant issue tracgit king tool for modern teams.
+              Manage your projects with ease.
             </p>
             <div className="mt-10">
               <Link href="/signup">
