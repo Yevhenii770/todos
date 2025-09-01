@@ -111,6 +111,7 @@ export const updateIssue = async (id: number, data: Partial<IssueData>) => {
   if (validatedData.priority !== undefined)
     updateData.priority = validatedData.priority
 
+  revalidateTag("issues")
   await db.update(issues).set(updateData).where(eq(issues.id, id))
   return {
     success: true,
@@ -129,7 +130,7 @@ export async function deleteIssue(id: number) {
 
     // Delete issue
     await db.delete(issues).where(eq(issues.id, id))
-
+    revalidateTag("issues")
     return { success: true, message: "Issue deleted successfully" }
   } catch (error) {
     console.error("Error deleting issue:", error)
