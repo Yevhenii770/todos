@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Timestamp } from "../../components/Timestamp"
 import Button from "../../components/ui/Button"
+import DashBoardButton from "../../components/DashBoardButton"
+import { Suspense } from "react"
 
 export default async function MarketingLayout({
   children,
@@ -37,14 +39,20 @@ export default async function MarketingLayout({
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center space-x-4">
-              <Link href="/signin">
-                <Button variant="outline">Sign in</Button>
-              </Link>
-              <Link href="/signup">
-                <Button>Sign up</Button>
-              </Link>
-            </div>
+            <Suspense
+              fallback={
+                <div className="flex items-center space-x-4">
+                  <Link href="/signin">
+                    <Button variant="outline">Sign in</Button>
+                  </Link>
+                  <Link href="/signup">
+                    <Button>Sign up</Button>
+                  </Link>
+                </div>
+              }
+            >
+              <DashBoardButton />
+            </Suspense>
           </div>
         </div>
       </header>
@@ -102,7 +110,7 @@ export default async function MarketingLayout({
                 </li>
                 <li>
                   <a
-                    href="https://github.com/Yevhenii770"
+                    href="https://github.com/yourusername/mode"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-gray-600 hover:text-purple-600"
